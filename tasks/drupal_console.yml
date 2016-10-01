@@ -1,0 +1,20 @@
+---
+- name: Drupal Console:Check if Drupal Console is installed.
+  stat: path=/usr/local/bin/drupal
+  register: drupal_bin
+
+- name: "Drupal Console:Get Drupal Console"
+  command: wget https://drupalconsole.com/installer -O drupal.phar
+  when: not drupal_bin.stat.exists
+
+- name: "Drupal Console:Get Drupal Console"
+  command: php drupal.phar
+  when: not drupal_bin.stat.exists
+
+- name: "Drupal Console:move Drupal Console to /usr/local/bin/Drupal Console"
+  command: mv drupal.phar /usr/local/bin/drupal
+  when: not drupal_bin.stat.exists
+
+- name: "Drupal Console:Set permissions"
+  file: path=/usr/local/bin/drupal mode=0755 owner=phoenix group=users
+  when: not drupal_bin.stat.exists
