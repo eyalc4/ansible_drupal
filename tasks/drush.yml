@@ -14,7 +14,3 @@
 - name: "Drush:move drush to /usr/local/bin/drush"
   command: mv drush.phar /usr/local/bin/drush
   when: not drush_bin.stat.exists
-
-- name: "Drush:Set permissions"
-  file: path=/usr/local/bin/drush mode=0755 owner=phoenix group=users
-  when: not drush_bin.stat.exists
