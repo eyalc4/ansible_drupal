@@ -14,7 +14,3 @@
 - name: "Drupal Console:move Drupal Console to /usr/local/bin/Drupal Console"
   command: mv drupal.phar /usr/local/bin/drupal
   when: not drupal_bin.stat.exists
-
-- name: "Drupal Console:Set permissions"
-  file: path=/usr/local/bin/drupal mode=0755 owner=phoenix group=users
-  when: not drupal_bin.stat.exists
