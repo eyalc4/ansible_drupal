@@ -1,7 +1,7 @@
 ---
 - name: Ensure framework_composer_install_dir directory exists.
   file:
-    path: "{{ framwork_composer_install_dir }}"
+    path: "{{ framework_composer_install_dir }}"
     state: directory
     mode: 0775
   become: no
