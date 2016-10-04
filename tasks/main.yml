@@ -2,14 +2,14 @@
 - include: drush.yml
 - include: drupal_console.yml
 
-- name: Check if Drupal is already set up.
+- name: Check if Drupal is already set up
   stat: "path={{ framework_core_path }}/index.php"
   register: drupal_site
   ignore_errors: true
 
-- name: Define drupal_site_exists
+- name: Define site_exists
   set_fact:
-    drupal_site_exists: "{{ drupal_site.stat.exists|default(false) }}"
+    site_exists: "{{ drupal_site.stat.exists|default(false) }}"
 
 #    - include: tasks/sshd.yml
 #    - include: tasks/extras.yml

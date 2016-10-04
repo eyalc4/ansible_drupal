@@ -13,12 +13,12 @@
   copy:
     src: "{{ drupal_composer_path }}"
     dest: "/tmp/genvm-composer.json"
-  when: framework_composer_path and not drupal_site_exists
+  when: framework_composer_path and not site_exists
   become: no
 
 - name: Move composer.json into place.
   command: "mv /tmp/genvm-composer.json {{ drupal_composer_install_dir }}/composer.json"
-  when: framework_composer_path and not drupal_site_exists
+  when: framework_composer_path and not site_exists
   become: no
 
 - name: Run composer install.
