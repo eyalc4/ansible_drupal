@@ -18,7 +18,7 @@
   become: no
 
 - name: Move composer.json into place.
-  command: "mv /tmp/genvm-composer.json {{ drupal_composer_install_dir }}/composer.json"
+  command: "mv /tmp/genvm-composer.json {{ framework_composer_install_dir }}/composer.json"
   when: framework_composer_path and not site_exists
   become: no
 
@@ -26,12 +26,12 @@
   command: >
     composer install
     chdir={{ framework_composer_install_dir }}
-  when: not drupal_site_exists
+  when: not site_exists
   become: no
 
 - name: Install dependencies with composer require.
   command: >
     {{ composer_path }} require {{ item }}
     chdir={{ framework_composer_install_dir }}
-  with_items: "{{ drupal_composer_dependencies|default([]) }}"
+  with_items: "{{ framework_composer_dependencies|default([]) }}"
   become: no
