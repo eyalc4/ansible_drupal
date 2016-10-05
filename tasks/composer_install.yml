@@ -4,7 +4,7 @@
     path: "{{ framework_composer_install_dir }}"
     state: directory
     mode: 0775
-    owner: {{ site_os_user }}
+    owner: "{{ site_os_user }}"
   become: yes
   when: framework_composer_path and not site_exists
 
