@@ -4,7 +4,8 @@
     path: "{{ framework_composer_install_dir }}"
     state: directory
     mode: 0775
-  become: no
+    owner: site_os_user
+  become: yes
   when: framework_composer_path and not site_exists
 
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
