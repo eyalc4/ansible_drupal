@@ -8,6 +8,19 @@
   become: yes
   when: framework_composer_path and not site_exists
 
+#TDOO: check if there is a ready composer to use, or use recomended composer.json from drupal_composer
+#composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
+
+- name: Run composer install.
+  command: >
+    create-project drupal-composer/drupal-project:8.x-dev
+    "{{ site_name }}"
+    chdir={{ framework_composer_install_dir }}
+    --stability dev --no-interaction
+  when: not site_exists
+  become: no
+
+
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
 # https://github.com/ansible/ansible/issues/9526#issuecomment-62336962
 - name: Copy composer.json into temporary location.
@@ -22,12 +35,14 @@
   when: framework_composer_path and not site_exists
   become: no
 
-- name: Run composer install.
-  command: >
-    composer install
-    chdir={{ framework_composer_install_dir }}
-  when: not site_exists
-  become: no
+#- name: Run composer install.
+#  command: >
+#    composer install
+#    chdir={{ framework_composer_install_dir }}
+#  when: not site_exists
+#  become: no
+
+# TODO composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
 
 - name: Install dependencies with composer require.
   command: >
