@@ -18,7 +18,7 @@
     composer create-project drupal-composer/drupal-project:8.x-dev
     "{{ site_name }}"
     --stability dev --no-interaction
-    chdir="{{ framework_composer_path }}"
+    chdir="{{ framework_composer_install_dir }}"
   when: not site_exists
   become: no
 
