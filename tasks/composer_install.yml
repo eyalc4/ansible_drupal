@@ -20,7 +20,7 @@
     --stability dev --no-interaction
     chdir="/var/www/auo"
   when: not site_exists
-  become: no
+  become: yes
 
 
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
