@@ -15,7 +15,7 @@
   command: >
     create-project drupal-composer/drupal-project:8.x-dev
     "{{ site_name }}"
-    chdir=/var/www/auo/drupal
+    chdir="{{ framework_composer_install_dir }}"
     --stability dev --no-interaction
   when: not site_exists
   become: no
