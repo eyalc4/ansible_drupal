@@ -11,12 +11,14 @@
 #TDOO: check if there is a ready composer to use, or use recomended composer.json from drupal_composer
 #composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
 
+- debug: msg="Installing Drupal with composer, in dir {{ framework_composer_install_dir }}"
+
 - name: Run composer install.
   command: >
     create-project drupal-composer/drupal-project:8.x-dev
     "{{ site_name }}"
-    chdir="{{ framework_composer_install_dir }}"
     --stability dev --no-interaction
+    chdir="{{ framework_composer_install_dir }}"
   when: not site_exists
   become: no
 
