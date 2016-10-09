@@ -15,10 +15,10 @@
 
 - name: Run composer install.
   command: >
-    create-project drupal-composer/drupal-project:8.x-dev
+    composer create-project drupal-composer/drupal-project:8.x-dev
     "{{ site_name }}"
     --stability dev --no-interaction
- #   chdir="/var/www/auo"
+    chdir="{{ framework_composer_path }}"
   when: not site_exists
   become: no
 
