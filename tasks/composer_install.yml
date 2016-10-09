@@ -16,11 +16,11 @@
 - name: Run composer install.
   command: >
     create-project drupal-composer/drupal-project:8.x-dev
-    drupal
+    "{{ site_name }}"
     --stability dev --no-interaction
-    chdir="/var/www/auo"
+ #   chdir="/var/www/auo"
   when: not site_exists
-  become: yes
+  become: no
 
 
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
