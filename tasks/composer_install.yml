@@ -1,7 +1,7 @@
 ---
-- name: Ensure framework_composer_install_dir directory exists.
+- name: Ensure site_parent_dir directory exists.
   file:
-    path: "{{ framework_composer_install_dir }}"
+    path: "{{ site_parent_dir }}"
     state: directory
     mode: 0775
     owner: "{{ site_os_user }}"
@@ -35,10 +35,10 @@
   when: framework_composer_path and not site_exists
   become: no
 
-- name: Move composer.json into place.
-  command: "mv /tmp/genvm-composer.json {{ framework_composer_install_dir }}/composer.json"
-  when: framework_composer_path and not site_exists
-  become: no
+#- name: Move composer.json into place.
+#  command: "mv /tmp/genvm-composer.json {{ site_parent_dir }}/composer.json"
+#  when: framework_composer_path and not site_exists
+#  become: no
 
 #- name: Run composer install.
 #  command: >
