@@ -22,7 +22,8 @@
     --no-interaction
   when: not site_exists
   become: no
-  environment: COMPOSER_PROCESS_TIMEOUT: 2400
+  environment:
+    COMPOSER_PROCESS_TIMEOUT: 2400
 
 
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
