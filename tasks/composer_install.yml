@@ -11,14 +11,14 @@
 #TDOO: check if there is a ready composer to use, or use recomended composer.json from drupal_composer
 #composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
 
-- debug: msg="Installing Drupal with composer, in dir {{ framework_composer_install_dir }}"
+- debug: msg="Installing Drupal with composer, in dir {{ site_parent_dir }}"
 
-- name: Run composer install.
+- name: Run composer install, this may take up to 5 minutes if your host OS is Windows
   command: >
     composer create-project drupal-composer/drupal-project:8.x-dev
-    "{{ site_name }}"
+    "{{ site_project_name }}"
     --stability dev
-    chdir="{{ framework_composer_install_dir }}"
+    chdir="{{ site_parent_dir }}"
     --no-interaction
   when: not site_exists
   become: no
@@ -52,6 +52,6 @@
 - name: Install dependencies with composer require.
   command: >
     {{ composer_path }} require {{ item }}
-    chdir={{ framework_composer_install_dir }}
+    chdir={{ site_parent_dir }}
   with_items: "{{ framework_composer_dependencies|default([]) }}"
   become: no
