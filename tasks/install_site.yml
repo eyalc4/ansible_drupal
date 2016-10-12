@@ -1,8 +1,9 @@
 ---
 - name: Check if Drupal is already set up.
-   stat: path="{{ framework_core_path }}/index.php"
-   register: drupal_site
-   ignore_errors: true
+  stat:
+    path: "{{ framework_core_path }}/index.php"
+  register: drupal_site
+  ignore_errors: true
 
 - name: Define drupal_site_exists
   set_fact:
