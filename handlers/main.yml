@@ -1,1 +1,3 @@
 ---
+- name: restart webserver
+  include: handlers/restart_webserver.yml
