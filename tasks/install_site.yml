@@ -1,7 +1,7 @@
 ---
 ## ??
 - name: Check if Drupal is already set up.
-   stat: "path={{ framework_core_path }}/index.php"
+   stat: path="{{ framework_core_path }}/index.php"
    register: drupal_site
    ignore_errors: true
 
