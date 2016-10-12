@@ -23,7 +23,7 @@
   command: >
     drush site-install {{ drupal_install_profile | default('standard') }} -y
     --site-name="{{ site_name }}"
-    --account-name={{ site_ussername }}
+    --account-name={{ site_username }}
     --account-pass={{ site_password }}
     --db-url=mysql://{{ db_user }}:{{ db_password }}@localhost/{{ db_database }}
     {{ drupal_site_install_extra_args | default([]) | join(" ") }}
