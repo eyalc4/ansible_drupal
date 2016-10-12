@@ -17,6 +17,10 @@
 
     # Build with composer if configured.
 - include: composer_install.yml
+  when: install_site
+
+- include: install_site.yml
+  when: install_site
   #when: build_composer
 
     # Build a composer project if configured.
