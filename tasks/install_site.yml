@@ -9,11 +9,10 @@
   set_fact:
     drupal_site_exists: "{{ drupal_site.stat.exists|default(false) }}"
 
-
-- name: Verify VHosts directories exists
-  file: path="{{ item.path }}" state=directory mode=0755 owner="{{ site_os_user }}" group="users"
-  with_items: "{{ apache_vhosts }}"
-  notify: restart drupal
+#- name: Verify VHosts directories exists
+#  file: path="{{ item.path }}" state=directory mode=0755 owner="{{ site_os_user }}" group="users"
+#  with_items: "{{ apache_vhosts }}"
+#  notify: restart drupal
 
 - name: Check if site is already installed.
   command: >
@@ -33,7 +32,7 @@
     --db-url=mysql://{{ db_user }}:{{ db_password }}@localhost/{{ db_database }}
     {{ drupal_site_install_extra_args | default([]) | join(" ") }}
     chdir={{ framework_core_path }}
-  notify: restart webserver
+#  notify: restart webserver
   when: "'Successful' not in drupal_site_installed.stdout"
   become: no
 
