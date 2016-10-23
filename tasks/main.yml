@@ -3,7 +3,7 @@
 - include: drupal_console.yml
 
 - name: Check if Drupal is already set up
-  stat: "path={{ framework_core_path }}/index.php"
+  stat: "path={{ site_document_root }}/index.php"
   register: drupal_site
   ignore_errors: true
 
