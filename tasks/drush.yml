@@ -8,7 +8,7 @@
   when: not drush_bin.stat.exists
 
 - name: "Drush:Test installation Drush"
-  command: php drush.phar core-status
+  command: php drush core-status
   when: not drush_bin.stat.exists
 
 - name: "Drush:move drush to /usr/local/bin/drush"
