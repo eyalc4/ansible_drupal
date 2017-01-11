@@ -1,5 +1,5 @@
 ---
-- include: drush.yml
+#- include: drush.yml
 - include: drupal_console.yml
 
 - name: Check if Drupal is already set up
