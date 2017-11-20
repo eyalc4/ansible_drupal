@@ -25,7 +25,6 @@
   environment:
     COMPOSER_PROCESS_TIMEOUT: 2400
 
-
 # Use copy-and-move to prevent issues in Windows with VirtualBox. See:
 # https://github.com/ansible/ansible/issues/9526#issuecomment-62336962
 - name: Copy composer.json into temporary location.
@@ -34,18 +33,6 @@
     dest: "/tmp/genvm-composer.json"
   when: framework_composer_path and not site_exists
   become: no
-
-#- name: Move composer.json into place.
-#  command: "mv /tmp/genvm-composer.json {{ site_parent_dir }}/composer.json"
-#  when: framework_composer_path and not site_exists
-#  become: no
-
-#- name: Run composer install.
-#  command: >
-#    composer install
-#    chdir={{ framework_composer_install_dir }}
-#  when: not site_exists
-#  become: no
 
 # TODO composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
 

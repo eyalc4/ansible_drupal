@@ -1,1 +1,6 @@
 ---
+drush_version: "8.1.15"
+drush_phar_url: https://github.com/drush-ops/drush/releases/download/{{ drush_version }}/drush.phar
+drush_path: /usr/local/bin/drush
+
+drupal_console_path: /usr/local/bin/drupal
