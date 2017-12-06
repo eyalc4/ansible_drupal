@@ -6,10 +6,7 @@
     mode: 0775
     owner: "{{ site_os_user }}"
   become: yes
-  when: framework_composer_path and not site_exists
-
-#TDOO: check if there is a ready composer to use, or use recomended composer.json from drupal_composer
-#composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
+  when: not site_exists
 
 - debug: msg="Installing Drupal with composer, in dir {{ site_parent_dir }}"
 
@@ -24,17 +21,6 @@
   become: no
   environment:
     COMPOSER_PROCESS_TIMEOUT: 2400
-
-# Use copy-and-move to prevent issues in Windows with VirtualBox. See:
-# https://github.com/ansible/ansible/issues/9526#issuecomment-62336962
-- name: Copy composer.json into temporary location.
-  copy:
-    src: "{{ framework_composer_path }}"
-    dest: "/tmp/genvm-composer.json"
-  when: framework_composer_path and not site_exists
-  become: no
-
-# TODO composer create-project drupal-composer/drupal-project:8.x-dev my_project --stability dev --no-interaction
 
 - name: Install dependencies with composer require.
   command: >

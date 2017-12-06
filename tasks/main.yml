@@ -1,5 +1,5 @@
 ---
-- include: drush.yml
+#- include: drush.yml
 - include: drupal_console.yml
 
 - name: Check if Drupal is already set up
@@ -11,9 +11,36 @@
   set_fact:
     site_exists: "{{ drupal_site.stat.exists|default(false) }}"
 
+#    - include: tasks/sshd.yml
+#    - include: tasks/extras.yml
+#- include: tasks/www.yml
+
     # Build with composer if configured.
 - include: composer_install.yml
   when: install_site
 
 - include: install_site.yml
   when: install_site
+  #when: build_composer
+
+    # Build a composer project if configured.
+#    - include: tasks/build-composer-project.yml
+#      when: build_composer_project
+
+    # Install site if configured.
+#    - include: tasks/install-site.yml
+#      when: install_site
+
+#    - include: tasks/cron.yml
+
+#    - include: tasks/dashboard.yml
+#      when: dashboard_install_dir is defined and dashboard_install_dir != ''
+
+#    - name: Run configured post-provision shell scripts.
+#      script: "{{ item }}"
+#      with_items: "{{ post_provision_scripts|default([]) }}"
+
+ #   - name: Run configured post-provision ansible task files.
+ #     include: "{{ item }}"
+ #     with_fileglob:
+ #       - "{{ post_provision_tasks_dir|default(omit) }}"

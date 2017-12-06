@@ -1,0 +1,3 @@
+- name: Verify the vhost record exist
+  lineinfile: dest=/etc/httpd/conf.d/vhosts.conf state=present insertafter='^# Use VHost path domain$' line='Use VHost {{ site_document_root }} {{ site_domain }}'
+  notify: restart httpd

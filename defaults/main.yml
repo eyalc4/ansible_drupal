@@ -4,3 +4,35 @@ drush_phar_url: https://github.com/drush-ops/drush/releases/download/{{ drush_ve
 drush_path: /usr/local/bin/drush
 
 drupal_console_path: /usr/local/bin/drupal
+
+# Set this to false if you don't need to install empty site, and instead, you want to restore an exist site
+install_site: true
+
+# Operation system user
+site_os_user: vagrant
+site_os_group: vagrant
+
+# DB Connection details
+db_root_user: root
+db_root_password: root
+db_user: genvm_dbuser
+db_password: genvm_dbpass
+db_database: genvm_db
+
+# Framework details
+site_domain: drupal.dev
+site_name: "Drupal Site"
+site_project_name: "drupalcm"
+site_username: admin
+site_password: admin
+
+site_parent_dir: "/var/www"
+site_document_root: "{{ site_parent_dir }}/{{ site_project_name }}/web"
+framework_composer_path: "{{ site_parent_dir }}/{{ site_project_name }}/drupal.composer.json"
+
+apache_vhosts:
+  - domain: "{{ site_domain }}"
+    aliases: "www.{{ site_domain }}"
+    name: "drupal"
+    path: "{{ site_document_root }}"
+    extra_params: |

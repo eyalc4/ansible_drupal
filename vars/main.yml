@@ -1,1 +1,2 @@
 ---
+site_document_root: "/var/www/{{site_project_name}}/web"
